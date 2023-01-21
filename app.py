@@ -32,5 +32,16 @@ def predict_api():
     print(output[0])
     return jsonify(output[0])
 
+@app.route('/predict', methods=['POST'])
+
+##Receive input, convert it to float, two diamensional array, and transform to scale, 
+## Then, predict house price and insert in html page as an asnwer.2:06
+def predict():
+    data=[float(x) for x in request.form.values()]
+    final_input=scaler.transform(np.array(data).reshape(1,-1))
+    output=regmodel.predict(final_input)[0]
+    return render_template("home.html",prediction_text="The House price prediction is {}".format(output))
+
+
 if __name__=="__main__":
     app.run(debug=True)
