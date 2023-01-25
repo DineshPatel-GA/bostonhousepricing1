@@ -1,6 +1,6 @@
-# ##bostonhousepricing1
-# This project is created by following Youtube tutorials by
-# Krish Nail at www.iNeuron.ai, https://github.com/krishnaik06/bostonhousepricing
+# bostonhousepricing1
+This project is created by following Youtube tutorials by
+Krish Nail at www.iNeuron.ai, https://github.com/krishnaik06/bostonhousepricing
 
 My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
 
@@ -110,6 +110,7 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
     DEPLOYMENT 
     By HEROKU, 2:13
         Dineshpatel-GA
+        lin-reg-boston-h-pricing
         Create procfile with following command for Heroku instance. (only command in the file) 
         ---
             web: gunicorn app:app
@@ -138,7 +139,7 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
             //gunicorn will help deploy on Heroku and distrobutes the requestes among 4 procersses and bind it to $PORT and open 'app' file and run 'app' app.
             //'bind' The $PORT that we have expose in a container will be binded to a local IP address of wherever this app is lauched.
 
-    Github Action
+    Github Action:
         Configure Github action with values taken form Heroku.
         Create Two folders, 1. .github\workflows and inside create main.yaml file.
         In main.yaml copy the code from 
@@ -154,7 +155,7 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
         Get above info from Heroku and provide in github:
         Github > repo  > setigns > Secrets and variables > Actions > new repository secrets.
        
-        
+    With Github Action app will be deployed to Heroku automatically.
             
 
 
