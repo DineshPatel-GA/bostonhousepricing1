@@ -1,8 +1,8 @@
 # bostonhousepricing1
-Credits:    This project is created by following 
-            Krish Nail at www.iNeuron.ai, https://github.com/krishnaik06/bostonhousepricing
+Credits:    This project is created by following Krish Naik.
+             www.iNeuron.ai, https://github.com/krishnaik06/bostonhousepricing
 
-My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
+My Github:   https://github.com/DineshPatel-GA/bostonhousepricing1
 
 #SOFTWARE & TOOLS
 1. [Github Account](https://github.com)
@@ -32,12 +32,16 @@ B. ENVIRONMENT
         -----
 
 C. LIBRARIES & TOOLS
+
     Create requirements.txt file:
-        Hover over folder name and create a new file.
-        List all of the libraries we are going to use, Flask, sklearn, pandas, numpy, matplotlib. 
-        
-        Install libraries in requirements.txt:
-            >pip install -r requirements.txt
+        List following libraries.
+            Flask
+            sklearn
+            pandas
+            numpy
+            matplotlib
+            gunicorn
+    Install above libraries listed in requirements.txt:    >pip install -r requirements.txt
 
 D. VERSION CONTROL
     GitCLI Configurations:
@@ -47,11 +51,9 @@ D. VERSION CONTROL
 
     Send files to git repo:
         >git add .      //to stage the files which could be commited.
-        >cls            // just to clear the screen
         >git status     //to check the status
         >git commit.git commit -m "message"
-        >git push <remote> <branch> 
-        which is >git push origin main
+        >git push origin main 
 
 E. CREATE AN APP
         app.py. Create new file app.py
@@ -102,45 +104,43 @@ F. CRAETE HTML page:
 
 6. PREDICT
    PREPARE FUNCTION FOR WEBAPPLICATION TO PREDICT FROM HTML FORM, 2:06
-    get values from html form: request.form.values()
-    Convert to float and store as 'data'.
     data=[float(x) for x in request.form.values()]
-
-    Make an array: np.array(data)
-    Convert to two diamensional array: np.array(data).reshape(1,-1)
-    Transform to standardize fomat with scalar.transform
+        get values from html form: request.form.values()
+        Convert to float and store as 'data'.
+    
     final_input=scalar.transorm(np.array(data).reshape(1,-1))
-
-    Use predict function to predict based on final_input and pick value at index[0]
-        output=regmodel.predict(final_input)[0]
-
-    Render output in 'prediction-test' element of 'home.html' page with render_template function
-        return render_template("home.html",prediction_text="The House price prediction is {}".format(output))
-
+        Make an array: np.array(data)
+        Convert to two diamensional array: np.array(data).reshape(1,-1)
+        Transform to standardize fomat with scalar.transform
+    
+    output=regmodel.predict(final_input)[0]
+        Use predict function to predict based on final_input and pick value at index[0]
+    return render_template("home.html",prediction_text="The House price prediction is {}".format(output))
+        Render output in 'prediction-test' element of 'home.html' page with render_template function
+        
 7. DEPLOYMENT ON HEROKU
-    By HEROKU, 2:13
         Dineshpatel-GA
-        lin-reg-boston-h-pricing
+        HEROKU_APP_NAME: lin-reg-boston-h-pricing
+
+        procfile
         Create procfile with following command for Heroku instance. (only command in the file) 
         ---
             web: gunicorn app:app
         ---
-        gunicorn: Green unicorn is for wsgi applications to run python apps concurrently by running multiple processes on python http server.
-        app:app presents 'a file named app.py: an app called 'app' created by Flask in app.py.
-    Could not view the file on Heroku. Troubleshooting is in progress.
+            gunicorn: Green unicorn is for wsgi applications to run python apps concurrently by running multiple processes on python http server.
+            app:app presents 'a file named app.py: an app called 'app' created by Flask in app.py.
+        Could not view the file on Heroku. Troubleshooting is in progress.
 
 8. DOCKERIZATION:
-        Dcoker app will create an image of all of the configuration and create a container which can be run in os or push to a deployment site like Heroku.
+        Dcoker app will create an image of all of the configurations and create a container which can be run in any os or push to a deployment site like Heroku.
         
-        1. Create a Dockerfile in the folder.
-        2. Give 6 commands, FROM, COPY, WORKDIR, RUN, EXPOSE, and CMD
+        1. Create a 'Dockerfile' in the folder.
+        2. Give 6 commands:  FROM, COPY, WORKDIR, RUN, EXPOSE, and CMD
 
-        FROM python:3.7 
+        FROM python:3.7 // I chaged it to 3.9.0
                 // On Docker Server, which is on linux, my exsitng python 3.7 image will be used for next line of instructions
-        COPY . /app    
-                 //copy my all offiles from my current location " . " to a new folder, /app ,on Docker server. 
-        WORKDIR /app       
-                 //make above directory as a working directory.
+        COPY . /app         //copy my all offiles from my current location " . " to a new folder, /app ,on Docker server. 
+        WORKDIR /app       //make above directory as a working directory.
         RUN pip install -r requirements.txt     
                 //will run my requirements.txt to install all of the lib in a new cotainer.
         EXPOSE $PORT                            
@@ -151,7 +151,9 @@ F. CRAETE HTML page:
 
 9.  DEPOLYMENT ON HEROKY BY Github Action:
         Configure Github action with values taken form Heroku.
-        Create Two folders, 1. .github\workflows and inside create main.yaml file.
+        Create Two folders, 
+        .github\workflows and inside create 
+            main.yaml file.
         In main.yaml copy the code from 
             https://github.com/krishnaik06/bostonhousepricing/blob/main/.github/workflows/main.yaml.
         In main.yaml has three secrets (API name, email, and api key) which will receive the values from Heroku via github files scerets.
