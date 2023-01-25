@@ -1,17 +1,21 @@
 # bostonhousepricing1
-This project is created by following Youtube tutorials by
-Krish Nail at www.iNeuron.ai, https://github.com/krishnaik06/bostonhousepricing
+Credits:    This project is created by following 
+            Krish Nail at www.iNeuron.ai, https://github.com/krishnaik06/bostonhousepricing
 
 My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
 
-## SOFTWARE & TOOLS
+#SOFTWARE & TOOLS
 1. [Github Account](https://github.com)
 2. [HerokuAccount](https://www.heroku.com)
 3. [VS Code IDE](https://code.visualstudio.com)
 4. [GitCLI](https://git-scm.com/download/win)
 
-##PROJECT FLOW
+#PROJECT FLOW:
+
+A. MODEL
     Created a basic LinearRegression model withpython on Juypter.
+
+B. ENVIRONMENT
     Create an environment in Visual Studio Code: (time)1:23
         Open new terminal and >deactivate
         Ctr+Shft+p
@@ -26,14 +30,16 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
         or
         >conda activate venv/
         -----
+
+C. LIBRARIES & TOOLS
     Create requirements.txt file:
         Hover over folder name and create a new file.
         List all of the libraries we are going to use, Flask, sklearn, pandas, numpy, matplotlib. 
-        To install of the libraries on cmd use following code.
-        >pip install -r requirements.txt
-    Install libraries in requirements.txt:
-        >pip install -r requirements.txt
-    GIT
+        
+        Install libraries in requirements.txt:
+            >pip install -r requirements.txt
+
+D. VERSION CONTROL
     GitCLI Configurations:
         >git config --global user.name "Dinesh Patel"
         >git config --global user.email "Dincpatel@gmail.com"
@@ -46,11 +52,13 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
         >git commit.git commit -m "message"
         >git push <remote> <branch> 
         which is >git push origin main
-    CREATE AN APP
+
+E. CREATE AN APP
         app.py. Create new file app.py
         app.py
             import pickle
             import flask from Flask //for web applications
+
     Scaling.pkl
         This file is missing in .ipynb code.
         In Linear....ipynb' after code of scaling X_train and test, add following code
@@ -60,13 +68,14 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
         --
         and run again. If lib. do not get recognized, go on top-rt at 'python' and select anaconda config and run again.
         ---
-     HTML page:
+F. CRAETE HTML page:
         Templates folder
             home.html file detail html code with a form to input data will go here.
-    Test run:
-        >python app.py
-        if this does not run delete the current cmd and open it again, and/or pip install -r requirements.txt
-        If run, get the ip address and run to see if html page shows up.
+        Test run:
+            >python app.py
+            if this does not run delete the current cmd and open it again, and/or pip install -r requirements.txt
+            If run, get the ip address and run to see if html page shows up.
+
     POSTMAN (1:54):
         Install postman
         Select 'POST' and give ip address with app in app.py
@@ -91,23 +100,24 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
                  }
         }
 
-    PREPARE FUNCTION FOR WEBAPPLICATION TO PREDICT FROM HTML FORM, 2:06
-        get values from html form: request.form.values()
-        Convert to float and store as 'data'.
-            data=[float(x) for x in request.form.values()]
+6. PREDICT
+   PREPARE FUNCTION FOR WEBAPPLICATION TO PREDICT FROM HTML FORM, 2:06
+    get values from html form: request.form.values()
+    Convert to float and store as 'data'.
+    data=[float(x) for x in request.form.values()]
 
-        Make an array: np.array(data)
-        Convert to two diamensional array: np.array(data).reshape(1,-1)
-        Transform to standardize fomat with scalar.transform
-            final_input=scalar.transorm(np.array(data).reshape(1,-1))
+    Make an array: np.array(data)
+    Convert to two diamensional array: np.array(data).reshape(1,-1)
+    Transform to standardize fomat with scalar.transform
+    final_input=scalar.transorm(np.array(data).reshape(1,-1))
 
-        Use predict function to predict based on final_input and pick value at index[0]
-            output=regmodel.predict(final_input)[0]
+    Use predict function to predict based on final_input and pick value at index[0]
+        output=regmodel.predict(final_input)[0]
 
-        Render output in 'prediction-test' element of 'home.html' page with render_template function
-            return render_template("home.html",prediction_text="The House price prediction is {}".format(output))
+    Render output in 'prediction-test' element of 'home.html' page with render_template function
+        return render_template("home.html",prediction_text="The House price prediction is {}".format(output))
 
-    DEPLOYMENT 
+7. DEPLOYMENT ON HEROKU
     By HEROKU, 2:13
         Dineshpatel-GA
         lin-reg-boston-h-pricing
@@ -119,7 +129,7 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
         app:app presents 'a file named app.py: an app called 'app' created by Flask in app.py.
     Could not view the file on Heroku. Troubleshooting is in progress.
 
-    DOCKERIZATION:
+8. DOCKERIZATION:
         Dcoker app will create an image of all of the configuration and create a container which can be run in os or push to a deployment site like Heroku.
         
         1. Create a Dockerfile in the folder.
@@ -139,7 +149,7 @@ My Github: https://github.com/DineshPatel-GA/bostonhousepricing1
             //gunicorn will help deploy on Heroku and distrobutes the requestes among 4 procersses and bind it to $PORT and open 'app' file and run 'app' app.
             //'bind' The $PORT that we have expose in a container will be binded to a local IP address of wherever this app is lauched.
 
-    Github Action:
+9.  DEPOLYMENT ON HEROKY BY Github Action:
         Configure Github action with values taken form Heroku.
         Create Two folders, 1. .github\workflows and inside create main.yaml file.
         In main.yaml copy the code from 
